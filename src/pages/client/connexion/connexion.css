@@ -1,0 +1,55 @@
+label {
+  padding: 1%;
+  margin-left: 1%;
+  font-weight: bold;
+}
+
+.input-style {
+  display: flex;
+  flex-direction: column;
+}
+.input-style input {
+  height: 1.75rem;
+  border-radius: 8px;
+  margin: auto;
+  width: 95%;
+}
+button {
+  display: block;
+  margin: 20px auto;
+}
+.input-style-inline {
+  display: flex;
+}
+.input-style-inline div {
+  flex-grow: 1;
+  padding: 1%;
+}
+.text-promotion {
+  text-align: justify;
+  font-style: italic;
+  color: grey;
+  text-transform: none;
+}
+.row {
+  display: flex;
+}
+
+.form--connexion {
+  justify-content: center;
+}
+
+.btn-border {
+  background-color: white;
+  border-radius: 8px;
+  border: #af79ee 2px solid;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: #af79ee;
+  padding: 10px 15px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}

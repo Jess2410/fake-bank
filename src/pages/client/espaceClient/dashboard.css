@@ -1,0 +1,34 @@
+@media screen and (max-width: 800px) {
+  .accueil-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.calendar-content h2 {
+  text-transform: uppercase;
+  font-size: 30px;
+  margin: 0;
+}
+.calendar-content span {
+  text-transform: uppercase;
+  color: #af79ee;
+  font-weight: bold;
+}
+.calendar-content {
+  text-align: center;
+  margin-top: 3%;
+}
+.react-calendar {
+  margin: auto;
+  margin-top: 2%;
+}
+
+summary {
+  background-color: #af79ee;
+  width: 18%;
+  margin: auto;
+  color: white;
+  font-weight: bold;
+  padding: 1%;
+  border-radius: 5px;
+}

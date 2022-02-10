@@ -1,0 +1,65 @@
+@media screen and (max-width: 800px) {
+  .accueil-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.accueil-content {
+  display: flex;
+}
+
+.accueil--article,
+.calendar {
+  flex-grow: 1;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+}
+
+.accueil--article {
+  text-align: justify;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  margin: auto;
+  max-width: 600px;
+}
+
+.accueil--article h1 {
+  text-transform: uppercase;
+  color: #af79ee;
+  letter-spacing: 1px;
+  font-size: 40px;
+}
+
+.accueil--article h2 {
+  text-transform: uppercase;
+  font-size: 30px;
+  margin: 0;
+}
+.accueil--article span {
+  text-transform: uppercase;
+  color: #af79ee;
+  font-weight: bold;
+}
+
+.button-rdv {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.button-rdv button {
+  background-color: #af79ee;
+}
+.connect {
+  background-color: #af79ee;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: #af79ee 2px solid;
+}
