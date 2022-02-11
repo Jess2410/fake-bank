@@ -18,6 +18,7 @@ import { helperToast } from "../helpers/helperToast"
     const [form, setForm] = useState(inputs);
     const [emailConfirm, setEmailConfirm] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setForm({
@@ -28,19 +29,30 @@ import { helperToast } from "../helpers/helperToast"
 
     const handleSubmit = async  (e) => {
         e.preventDefault()
-        if (passwordConfirm === form.password) {
-            toast.promise(axios.post(`${BASE_URL}agent`, form).then(res => {
-                history.push("/connexionadmin")
-            }), {
-                pending: "Veuillez patienter !",
-                success: "Vous êtes inscrit avec succès !",
-                error: "Une erreur s'est produite 🤯",
-              });
+        if (emailConfirm === form.email && passwordConfirm === form.password ) {
+        setLoading(true)
+        try {
+          const res = await axios.post(`${BASE_URL}agent`, form)
+          console.log(res)
+          if (res.data && res.data?.status !== 400) {
+            setLoading(false)
+            helperToast("success", "Compte créé avec succès !")
+            history.push("/connexion")
+          } else if(res.data && res.data?.status === 400) {
+            setLoading(false)
+            helperToast("warning",res.data?.error)
+          }
+        } catch (err) {
+          setLoading(false)
+          helperToast("error", "Une erreur est survenue !")
+        }
+        setLoading(false)
         } else {
             helperToast("warning", "l'email ou mot de passe ne correspond pas !")
         }
-        
-    }
+      
+      }
+
 
     return(
         <form className="form--connexion"> 
@@ -69,7 +81,7 @@ import { helperToast } from "../helpers/helperToast"
                             <label>Confirmation Mot de passe</label>
                             <input type="password" id="password-confirm-admin" name="password-confirm" placeholder="********" onChange={e=>setPasswordConfirm(e.target.value)}/>   
                             <span style={{ color: "red" }}>{passwordConfirm !== form.password && "Le mot de passe ne correspond pas !"}</span>
-                        <button className="connect " type="submit" onClick={e => handleSubmit(e)} >Valider</button>
+                        <button className="connect " type="submit" onClick={e => handleSubmit(e)} >{loading ?"chargement...":"Valider"}</button>
 
                 
                         </div>

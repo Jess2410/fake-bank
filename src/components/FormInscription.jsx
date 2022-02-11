@@ -19,6 +19,7 @@ import { helperToast } from "../helpers/helperToast"
     const [form, setForm] = useState(inputs);
     const [emailConfirm, setEmailConfirm] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setForm({
@@ -26,29 +27,36 @@ import { helperToast } from "../helpers/helperToast"
             [e.target.name]: e.target.value
         })
     }
-
     const handleSubmit = async  (e) => {
         e.preventDefault()
         if (emailConfirm === form.email && passwordConfirm === form.password ) {
-            toast.promise(axios.post(`${BASE_URL}user`, form).then(res => {
-                console.log("🚀 ~ file: FormInscription.jsx ~ line 34 ~ toast.promise ~ res", res)
-                history.push("/connexion")
-            }).catch(err => {
-                console.log("🚀 ~ file: FormInscription.jsx ~ line 38 ~ toast.promise ~ err", err)
-                
-            }), {
-                pending: "Veuillez patienter !",
-                success: "Vous êtes inscrit avec succès !",
-                error: "Une erreur s'est produite 🤯",
-              });
+        setLoading(true)
+        try {
+          const res = await axios.post(`${BASE_URL}user`, form)
+          console.log(res)
+          if (res.data && res.data?.status !== 400) {
+            setLoading(false)
+            helperToast("success", "Compte créé avec succès !")
+            history.push("/connexion")
+          } else if(res.data && res.data?.status === 400) {
+            setLoading(false)
+            helperToast("warning",res.data?.error)
+          }
+        } catch (err) {
+          setLoading(false)
+          helperToast("error", "Une erreur est survenue !")
+        }
+        setLoading(false)
         } else {
             helperToast("warning", "l'email ou mot de passe ne correspond pas !")
         }
-        
-    }
+      
+      }
 
     return(
-        <form className="form--connexion"> 
+        <form className="form--connexion" method="POST" > 
+        
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     
             <fieldset>
                 <legend ><h2>Inscription</h2></legend>
@@ -83,7 +91,7 @@ import { helperToast } from "../helpers/helperToast"
                             <label>Confirmation Mot de passe</label>
                             <input type="password" id="password-confirm" name="password-confirm" placeholder="********" onChange={e=>setPasswordConfirm(e.target.value)}/>   
                             <span style={{ color: "red" }}>{passwordConfirm !== form.password && "Le mot de passe ne correspond pas !"}</span>
-                        <button className="connect " type="submit" onClick={e => handleSubmit(e)} >Valider</button>
+                        <button className="connect " type="submit" onClick={e => handleSubmit(e)} >{loading ?"chargement...":"Valider"}</button>
                         <p className="text-promotion">Les données personnelles recueillies ci-dessus sont utilisées par BNP Paribas, responsable de traitement, aux fins de traitement de votre demande. Ce document est également disponible sur ce site.</p>
                 
                         </div>
