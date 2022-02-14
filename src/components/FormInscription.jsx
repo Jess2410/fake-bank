@@ -27,6 +27,9 @@ import { helperToast } from "../helpers/helperToast"
             [e.target.name]: e.target.value
         })
     }
+
+  
+    
     const handleSubmit = async  (e) => {
         e.preventDefault()
         if (emailConfirm === form.email && passwordConfirm === form.password ) {

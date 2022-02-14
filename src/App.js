@@ -20,6 +20,7 @@ import InscriptionAdmin from "./pages/admin/inscription/InscriptionAdmin";
 import ConnexionClient from "./pages/client/connexion/ConnexionClient";
 import ConnexionAdmin from "./pages/admin/connexion/ConnexionAdmin";
 import Dashboard from "./pages/client/espaceClient/Dashboard"
+import Booking from "./pages/client/espaceClient/Booking";
 
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/connexion" component={ConnexionClient} />
         <Route exact path="/connexionadmin" component={ConnexionAdmin} />
         <Route exact path="/dashboardclient" component={Dashboard} />   
+        <Route exact path="/dashboardbooking" component={Booking} />   
         <Route exact path="/inscriptionadmin" component={InscriptionAdmin} />
         {/* <Route exact path="/admin-details" component={AdminDetails} />
         <Route exact path="/dashboard" component={Dashboard} />

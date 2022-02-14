@@ -11,6 +11,15 @@ const NavbarConnected = () => {
       <img className="logo" src={logo} alt="logo" />
       <h1>FakeBank</h1>
       </div>
+      <nav className="navbar">
+        <a  href="/">
+             Déconnexion
+             </a>
+        <button className="connectNav">
+        <a  href="/dashboardbooking">
+          Mes réservations</a>
+        </button>
+      </nav>
     </header>
   );
 };
