@@ -7,10 +7,7 @@ const FormConnexionAdmin=()=>{
         window.location.href = "/"
         
       }
-    // const handleClickInscription=(e)=>{
-    //     e.preventDefault()
-    //     window.location.href = "/inscription"
-    //   }
+
     return( 
     
         <form className="form--connexion">
@@ -36,11 +33,10 @@ const FormConnexionAdmin=()=>{
                 </div>
                 <p className="text-promotion"><b>Problème de connexion ? Veuillez contacter le service Support au 0 800 800 800.</b></p>
                 
-{/*                
-                    <button className="connect" onClick={handleClickInscription} >S'inscrire</button> */}
           
- </fieldset>
-      </div>    </form>
+            </fieldset>
+      </div>    
+    </form>
     )
 }
 

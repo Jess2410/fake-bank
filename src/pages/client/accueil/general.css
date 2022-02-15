@@ -63,3 +63,7 @@
 button {
   width: 200px;
 }
+
+.connectedNav a {
+  text-decoration: none;
+}

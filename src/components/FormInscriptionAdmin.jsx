@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../app.config";
-import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { helperToast } from "../helpers/helperToast"
   
