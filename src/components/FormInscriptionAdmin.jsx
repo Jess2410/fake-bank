@@ -26,6 +26,8 @@ import { helperToast } from "../helpers/helperToast"
         })
     }
 
+        //Requête pour inscription d'un admin
+
     const handleSubmit = async  (e) => {
         e.preventDefault()
         if (emailConfirm === form.email && passwordConfirm === form.password ) {

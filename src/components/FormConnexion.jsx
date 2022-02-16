@@ -12,10 +12,7 @@ const FormConnexion=()=>{
         window.location.href = "/dashboardclient"
         
       }
-    // const handleClickInscription=(e)=>{
-    //     e.preventDefault()
-    //     window.location.href = "/inscription"
-    //   }
+
     return(
         <form className="form--connexion">
             <fieldset>
