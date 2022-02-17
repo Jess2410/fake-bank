@@ -1,9 +1,17 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react' 
+import { useHistory } from 'react-router-dom'
+
 
 
   const DashboardBooking=()=>{
 
+
+    const history = useHistory()
+
+    const handleClick=(e)=>{
+      history.push("/dashboard")
+    }
     const [data, setData] = useState([]) 
 
 
@@ -12,7 +20,7 @@ import React, {useState, useEffect} from 'react'
 
 
       axios
-      .get("http://127.0.0.1:8000/api/dashboardbooking")
+      .get("http://127.0.0.1:8000/api/dashboard")
       .then(response => setData(response.data));
    
   }, []);
@@ -28,14 +36,18 @@ import React, {useState, useEffect} from 'react'
     
               <th>Date</th>
               <th>Heure</th>
+              <th>Agent n°</th>
               <tbody>
               
               {data.map((rdv,index)=> <tr key={index}>
                                       <td>{rdv.bookingday}</td>
                                       <td>{rdv.bookinghour}</td>
+                                      <td>{rdv.agent_id}</td>
                                       </tr>)}
            </tbody>
           </table>
+
+          <button className="btn-border" onClick={e=>handleClick(e)}>Retour</button>
     
 
 

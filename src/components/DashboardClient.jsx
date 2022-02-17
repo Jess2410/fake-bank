@@ -9,27 +9,32 @@ import { useHistory } from "react-router-dom";
 
 
   const DashboardClient=()=>{
-// const inputs={
-//       bookingday:"",
-//       bookinghour:""
-//     }
+    const inputs = {
+        birthday: "",
+        email: "",
+        }
 const history = useHistory()
+    const [form, setForm] = useState(inputs);
     const [date, setDate] = useState(new Date());
     const [hour, setHour] = useState("");
     const [loading, setLoading] = useState(false)
 
     const today = new Date()
-      const handleChange =(e)=>{
+
+
+
+      const handleChange =(e)=>{       
     setHour(e.target.value)
       }
 
 
       const handleSubmit = async  (e) => {
+   
         e.preventDefault()
             if (date.toLocaleString()>today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear()&&date.getDay()!==0) { 
               setLoading(true)
            try {
-            const res = await axios.post(`${BASE_URL}dashboardbooking`, {bookingday:date.toLocaleDateString(),bookinghour:hour})
+            const res = await axios.post(`${BASE_URL}dashboard`, {bookingday:date.toLocaleDateString(),bookinghour:hour})
                 console.log(res)
       
           setLoading(true)
@@ -49,7 +54,9 @@ const history = useHistory()
           <h2>Prenez <span>rdv</span> avec un <span>conseiller</span></h2>
           <h2>Disponible du lundi au samedi</h2>
           <br />
+
           <form id="booking"   >
+ 
             <details className="calendar"> 
             <summary>Prendre RDV</summary>
             <Calendar onChange={setDate} value={date} name="bookingday"/>

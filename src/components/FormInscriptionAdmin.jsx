@@ -30,7 +30,7 @@ import { helperToast } from "../helpers/helperToast"
 
     const handleSubmit = async  (e) => {
         e.preventDefault()
-        if (emailConfirm === form.email && passwordConfirm === form.password ) {
+        if (passwordConfirm === form.password ) {
         setLoading(true)
         try {
           const res = await axios.post(`${BASE_URL}agent`, form)

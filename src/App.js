@@ -21,10 +21,10 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Accueil} /> 
-        <Route exact path="/inscription" component={Inscription} /> 
-        <Route exact path="/connexion" component={ConnexionClient} />
+        <Route exact path="/register" component={Inscription} /> 
+        <Route exact path="/login" component={ConnexionClient} />
         <Route exact path="/connexionadmin" component={ConnexionAdmin} />
-        <Route exact path="/dashboardclient" component={Dashboard} />   
+        <Route exact path="/dashboard" component={Dashboard} />   
         <Route exact path="/dashboardbooking" component={Booking} />   
         <Route exact path="/inscriptionadmin" component={InscriptionAdmin} />
 

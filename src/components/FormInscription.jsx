@@ -27,20 +27,19 @@ import { helperToast } from "../helpers/helperToast"
         })
     }
 
-  
     //Requête pour inscription d'un utilisateur
-    
+
     const handleSubmit = async  (e) => {
         e.preventDefault()
         if (emailConfirm === form.email && passwordConfirm === form.password ) {
         setLoading(true)
         try {
-          const res = await axios.post(`${BASE_URL}user`, form)
+          const res = await axios.post(`${BASE_URL}register`, form)
           console.log(res)
           if (res.data && res.data?.status !== 400) {
             setLoading(false)
             helperToast("success", "Compte créé avec succès !")
-            history.push("/connexion")
+            history.push("/login")
           } else if(res.data && res.data?.status === 400) {
             setLoading(false)
             helperToast("warning",res.data?.error)

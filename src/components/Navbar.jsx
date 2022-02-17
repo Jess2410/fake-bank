@@ -5,7 +5,7 @@ const Navbar = () => {
 
   const handleClick=(e)=>{
     e.preventDefault()
-    window.location.href = "/connexion"
+    window.location.href = "/login"
   }
 
   return (
@@ -16,7 +16,7 @@ const Navbar = () => {
       <h1>FakeBank</h1>
       </div>
       <nav className="navbar">
-        <a  href="/inscription">
+        <a  href="/register">
           S'inscrire
         </a>
         <button className="connectNav" onClick={handleClick}>

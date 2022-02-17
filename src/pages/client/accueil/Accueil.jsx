@@ -15,7 +15,7 @@ import "../../../../src/pages/client/accueil/general.css"
 const Accueil = () => {
 const handleClick=(e)=>{
   e.preventDefault()
-  window.location.href = "connexion"
+  window.location.href = "login"
 }
 
   return (
