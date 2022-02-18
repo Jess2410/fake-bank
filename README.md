@@ -1,3 +1,29 @@
+La version de React utilisée :
+
+- npm install react-router-dom@5.3.0
+
+Le lancement :
+
+- npm start
+
+Local:
+
+- http://localhost:3000/
+
+Les packages installés :
+
+- npm install --save react-toastify
+- npm install axios
+- npm install react-calendar
+
+
+Maquettage sous Figma : 
+![image](https://user-images.githubusercontent.com/89982670/154598980-b9318192-e4e7-4eb2-88ee-c18950b89306.png)
+
+Schéma des tables sous Excalidraw : 
+![image](https://user-images.githubusercontent.com/89982670/154599077-e7110097-ad19-457c-9f3a-d640bdb44331.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
