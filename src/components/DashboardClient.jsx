@@ -9,11 +9,13 @@ import { useHistory } from "react-router-dom";
 
 
   const DashboardClient=()=>{
+    const history = useHistory()
+    
     const inputs = {
         birthday: "",
         email: "",
         }
-const history = useHistory()
+  
     const [form, setForm] = useState(inputs);
     const [date, setDate] = useState(new Date());
     const [hour, setHour] = useState("");
@@ -21,33 +23,29 @@ const history = useHistory()
 
     const today = new Date()
 
-
-
-      const handleChange =(e)=>{       
+    const handleChange =(e)=>{       
     setHour(e.target.value)
       }
+    
+    //Prise de RDV si date après date d'aujourd'hui et différente d'un dimanche
 
-
-      const handleSubmit = async  (e) => {
-   
-        e.preventDefault()
-            if (date.toLocaleString()>today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear()&&date.getDay()!==0) { 
-              setLoading(true)
-           try {
-            const res = await axios.post(`${BASE_URL}dashboard`, {bookingday:date.toLocaleDateString(),bookinghour:hour})
-                console.log(res)
-      
-          setLoading(true)
-            helperToast("success", "Rendez-vous confirmé !")
-            history.push("/dashboardbooking")
-          } catch (err) {
-                      setLoading(false)
-                      helperToast("error", "Une erreur est survenue !")
-           }
-   }else{    
-            setLoading(false)
-            helperToast("warning", "Date invalide : antérieure ou dimanche !")}
-      }
+    const handleSubmit = async  (e) => {
+      e.preventDefault()
+          if (date.toLocaleString()>today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear()&&date.getDay()!==0) { 
+            setLoading(true)
+            try {
+                setLoading(true)
+                const res = await axios.post(`${BASE_URL}dashboard`, {bookingday:date.toLocaleDateString(),bookinghour:hour})
+                helperToast("success", "Rendez-vous confirmé !")
+                history.push("/dashboardbooking")
+            } catch (err) {
+                setLoading(false)
+                helperToast("error", "Une erreur est survenue !")
+            }
+        }else{    
+          setLoading(false)
+          helperToast("warning", "Date invalide : antérieure ou dimanche !")}
+    }
     return(
   
         <div className="calendar-content">
@@ -57,28 +55,28 @@ const history = useHistory()
 
           <form id="booking"   >
  
-            <details className="calendar"> 
-            <summary>Prendre RDV</summary>
-            <Calendar onChange={setDate} value={date} name="bookingday"/>
-                <br />
-            <label for="hour-select">Choisissez un créneau :</label>
-                <br />  
-            <select onChange={handleChange} value={hour} name="bookinghour">
-                <option value="" key={"1"}>-- Heure de RDV --</option>
-                <option value="08:00" key={"2"}>08:00</option>
-                <option value="09:00" key={"3"}>09:00</option>
-                <option value="10:00" key={"4"}>10:00</option>
-                <option value="11:00" key={"5"}>11:00</option>
-                <option value="14:00" key={"6"}>14:00</option>
-                <option value="15:00" key={"7"}>15:00</option>
-                <option value="16:00" key={"8"}>16:00</option>
-                <option value="17:00" key={"9"}>17:00</option>
-            </select>
+              <details className="calendar"> 
+              <summary>Prendre RDV</summary>
+              <Calendar onChange={setDate} value={date} name="bookingday"/>
+                  <br />
+              <label for="hour-select">Choisissez un créneau :</label>
+                  <br />  
+              <select onChange={handleChange} value={hour} name="bookinghour">
+                  <option value="" key={"1"}>-- Heure de RDV --</option>
+                  <option value="08:00" key={"2"}>08:00</option>
+                  <option value="09:00" key={"3"}>09:00</option>
+                  <option value="10:00" key={"4"}>10:00</option>
+                  <option value="11:00" key={"5"}>11:00</option>
+                  <option value="14:00" key={"6"}>14:00</option>
+                  <option value="15:00" key={"7"}>15:00</option>
+                  <option value="16:00" key={"8"}>16:00</option>
+                  <option value="17:00" key={"9"}>17:00</option>
+              </select>
 
-            <p className="rdv">Vous avez choisi le <span>{date.toLocaleDateString()}</span> à <span>{hour}h</span>.</p>
-            </details>
-            <button className="connect " type="submit" onClick={e => handleSubmit(e)} >{loading ?"chargement...":"Valider"}</button>
-      </form>
+              <p className="rdv">Vous avez choisi le <span>{date.toLocaleDateString()}</span> à <span>{hour}h</span>.</p>
+              </details>
+              <button className="connect " type="submit" onClick={e => handleSubmit(e)} >{loading ?"chargement...":"Valider"}</button>
+          </form>
 
       </div>
     )

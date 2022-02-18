@@ -32,22 +32,21 @@ import { helperToast } from "../helpers/helperToast"
         e.preventDefault()
         if (passwordConfirm === form.password ) {
         setLoading(true)
-        try {
-          const res = await axios.post(`${BASE_URL}agent`, form)
-          console.log(res)
-          if (res.data && res.data?.status !== 400) {
-            setLoading(false)
-            helperToast("success", "Compte créé avec succès !")
-            history.push("/connexion")
-          } else if(res.data && res.data?.status === 400) {
-            setLoading(false)
-            helperToast("warning",res.data?.error)
-          }
-        } catch (err) {
-          setLoading(false)
-          helperToast("error", "Une erreur est survenue !")
-        }
-        setLoading(false)
+            try {
+            const res = await axios.post(`${BASE_URL}agent`, form)
+                if (res.data && res.data?.status !== 400) {
+                    setLoading(false)
+                    helperToast("success", "Compte créé avec succès !")
+                    history.push("/connexionadmin")
+                } else if(res.data && res.data?.status === 400) {
+                    setLoading(false)
+                    helperToast("warning",res.data?.error)
+                }
+            } catch (err) {
+                    setLoading(false)
+                    helperToast("error", "Une erreur est survenue !")
+                    }
+                    setLoading(false)
         } else {
             helperToast("warning", "l'email ou mot de passe ne correspond pas !")
         }
@@ -83,12 +82,9 @@ import { helperToast } from "../helpers/helperToast"
                             <input type="password" id="password-confirm-admin" name="password-confirm" placeholder="********" onChange={e=>setPasswordConfirm(e.target.value)}/>   
                             <span style={{ color: "red" }}>{passwordConfirm !== form.password && "Le mot de passe ne correspond pas !"}</span>
                         <button className="connect " type="submit" onClick={e => handleSubmit(e)} >{loading ?"chargement...":"Valider"}</button>
-
-                
-                        </div>
-                   
- </fieldset>
-    </form>
+                        </div> 
+            </fieldset>
+        </form>
     )
 }
 

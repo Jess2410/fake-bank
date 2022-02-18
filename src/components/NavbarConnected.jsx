@@ -13,11 +13,11 @@ const NavbarConnected = () => {
       </div>
       <nav className="navbar">
         <a  href="/">
-             Déconnexion
-             </a>
+          Déconnexion
+        </a>
         <button className="connectNav">
         <a  style={{color:'white'}} href="/dashboardbooking">
-          Mes réservations</a>
+          Mes rendez-vous</a>
         </button>
       </nav>
     </header>

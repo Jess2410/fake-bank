@@ -1,16 +1,12 @@
 import React from "react";
-import FormInscription from "../../../components/FormInscription";
 
-// IMPORT ASSETS
+// IMPORT COMPONENTS
 import Navbar from "../../../components/Navbar";
-
+import FormInscription from "../../../components/FormInscription";
 
 // IMPORT STYLES
 import "./inscription.css"
 import "../accueil/general.css"
-
-
-
 
 const Inscription = () => {
 
@@ -18,8 +14,7 @@ const Inscription = () => {
   return (
     <div>
       <Navbar />
-
-<FormInscription/>
+      <FormInscription/>
     </div>
   );
 };

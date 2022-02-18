@@ -33,26 +33,24 @@ import { helperToast } from "../helpers/helperToast"
         e.preventDefault()
         if (emailConfirm === form.email && passwordConfirm === form.password ) {
         setLoading(true)
-        try {
-          const res = await axios.post(`${BASE_URL}register`, form)
-          console.log(res)
-          if (res.data && res.data?.status !== 400) {
-            setLoading(false)
-            helperToast("success", "Compte créé avec succès !")
-            history.push("/login")
-          } else if(res.data && res.data?.status === 400) {
-            setLoading(false)
-            helperToast("warning",res.data?.error)
-          }
-        } catch (err) {
-          setLoading(false)
-          helperToast("error", "Une erreur est survenue !")
-        }
-        setLoading(false)
-        } else {
-            helperToast("warning", "l'email ou mot de passe ne correspond pas !")
-        }
-      
+            try {
+                const res = await axios.post(`${BASE_URL}register`, form)
+                    if (res.data && res.data?.status !== 400) {
+                        setLoading(false)
+                        helperToast("success", "Compte créé avec succès !")
+                        history.push("/login")
+                    } else if(res.data && res.data?.status === 400) {
+                        setLoading(false)
+                        helperToast("warning",res.data?.error)
+                    }
+            } catch (err) {
+                        setLoading(false)
+                        helperToast("error", "Une erreur est survenue !")
+                    }
+                        setLoading(false)
+                    } else {
+                        helperToast("warning", "l'email ou mot de passe ne correspond pas !")
+                    }
       }
 
     return(
@@ -95,11 +93,9 @@ import { helperToast } from "../helpers/helperToast"
                             <span style={{ color: "red" }}>{passwordConfirm !== form.password && "Le mot de passe ne correspond pas !"}</span>
                         <button className="connect " type="submit" onClick={e => handleSubmit(e)} >{loading ?"chargement...":"Valider"}</button>
                         <p className="text-promotion">Les données personnelles recueillies ci-dessus sont utilisées par BNP Paribas, responsable de traitement, aux fins de traitement de votre demande. Ce document est également disponible sur ce site.</p>
-                
-                        </div>
-                   
- </fieldset>
-    </form>
+                        </div>               
+            </fieldset>
+        </form>
     )
 }
 

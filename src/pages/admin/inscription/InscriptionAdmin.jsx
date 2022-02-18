@@ -17,9 +17,7 @@ const InscriptionAdmin = () => {
 
   return (
     <div>
-      {/* <Navbar /> */}
-
-<FormInscriptionAdmin/>
+      <FormInscriptionAdmin/>
     </div>
   );
 };

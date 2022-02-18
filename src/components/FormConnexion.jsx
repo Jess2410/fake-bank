@@ -5,12 +5,12 @@ import { BASE_URL } from "../app.config";
 import { useHistory } from "react-router-dom";
 
 const FormConnexion=()=>{
+    const history = useHistory()
 
     const inputs = {
           email: "",
           password: "",
           }
-    const history = useHistory()
     const [form, setForm] = useState(inputs);
     const [loading, setLoading] = useState(false)
 
@@ -20,37 +20,36 @@ const FormConnexion=()=>{
         
       }
 
-      const handleChange = (e) => {
+    const handleChange = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         })
     }
 
-      const handleSubmit= async (e)=>{
-        e.preventDefault()
-            setLoading(true)
-            try {
-              const res = await axios.post(`${BASE_URL}login`, form)
-              console.log(res)
-              console.log(res.data.access_token)
-              if (res.data && res.data?.status !== 400) {
-                setLoading(false)    
-                localStorage.setItem("token", res.data.access_token)
-                helperToast("success", "Vous êtes connecté(e) !")
-                history.push("/dashboard") 
-            
-              } else if(res.data && res.data?.status === 400) {
-                setLoading(false)
-                helperToast("warning",res.data?.error)
-              }
-            } catch (err) {
-              setLoading(false)
-              helperToast("error", "Une erreur est survenue !")
-            }
+    //Stockage du Token dans le LocalStorage après connexion
+    const handleSubmit= async (e)=>{
+    e.preventDefault()
+        setLoading(true)
+        try {
+            const res = await axios.post(`${BASE_URL}login`, form)
+            console.log(res)
+            console.log(res.data.access_token)
+            if (res.data && res.data?.status !== 400) {
+            setLoading(false)    
+            localStorage.setItem("token", res.data.access_token)
+            helperToast("success", "Vous êtes connecté(e) !")
+            history.push("/dashboard") 
+        
+            } else if(res.data && res.data?.status === 400) {
             setLoading(false)
-    
-    
+            helperToast("warning",res.data?.error)
+            }
+        } catch (err) {
+            setLoading(false)
+            helperToast("error", "Une erreur est survenue !")
+        }
+        setLoading(false)
         
       }
 
@@ -74,13 +73,9 @@ const FormConnexion=()=>{
                 <button className="btn-border" type="button" onClick={handleClickAccueil}>Retour</button>
                 <button className="connect " type="submit" onClick={e => handleSubmit(e)} >{loading ?"chargement...":"Connexion"}</button>
                 </div>
-                <p className="text-promotion"><b>Vous n'avez pas de compte ? Inscrivez-vous dès maintenant pour organiser vos rendez-vous !</b></p>
-                
-{/*                
-                    <button className="connect" onClick={handleClickInscription} >S'inscrire</button> */}
-                
- </fieldset>
-    </form>
+                <p className="text-promotion"><b>Vous n'avez pas de compte ? Inscrivez-vous dès maintenant pour organiser vos rendez-vous !</b></p>             
+            </fieldset>
+        </form>
     )
 }
 
